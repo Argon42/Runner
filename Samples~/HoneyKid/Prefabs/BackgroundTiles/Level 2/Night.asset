@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19935cdb4a5d4ef1bc0da6f4d77c9f2c, type: 3}
+  m_Name: Night
+  m_EditorClassIdentifier: 
+  start: {fileID: 7915146416802354990, guid: c4eb2d6952460d44e8f6543c5b231528, type: 3}
+  tiles:
+  - {fileID: 7174848359555532959, guid: 70e80039089a0684181325d15bbbcccf, type: 3}
+  - {fileID: 7174848359555532959, guid: 870ce878fb5554846902a4cf1b0d0b7a, type: 3}
+  - {fileID: 7174848359555532959, guid: 296df8ac29be81e49bf2635b7c60e220, type: 3}
+  transition: {fileID: 8760130134690997222, guid: 03e15dfb1a72ddd47bfde51dd708fb32, type: 3}
