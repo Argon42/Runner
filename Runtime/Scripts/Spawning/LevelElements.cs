@@ -12,6 +12,18 @@ namespace YodeGroup.Runner
 
         private readonly List<GameElement> _gameElements = new List<GameElement>();
 
+        private void OnEnable()
+        {
+            spawner.ObstacleSpawned += OnElementSpawned;
+            spawner.CollectableSpawned += OnElementSpawned;
+        }
+
+        private void OnDisable()
+        {
+            spawner.ObstacleSpawned -= OnElementSpawned;
+            spawner.CollectableSpawned -= OnElementSpawned;
+        }
+
         public void DestroyAllElements()
         {
             foreach (var element in GetElements())
@@ -41,19 +53,7 @@ namespace YodeGroup.Runner
                 element.Resume();
         }
 
-        private void OnEnable()
-        {
-            spawner.ObstacleSpawned += OnElementSpawned;
-            spawner.CollectableSpawned += OnElementSpawned;
-        }
-
-        private void OnDisable()
-        {
-            spawner.ObstacleSpawned -= OnElementSpawned;
-            spawner.CollectableSpawned -= OnElementSpawned;
-        }
-
-        private IEnumerable<GameElement> GetElements()
+        public IReadOnlyList<GameElement> GetElements()
         {
             _gameElements.RemoveAll(e => e == false);
             return _gameElements;
