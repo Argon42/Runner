@@ -1,6 +1,6 @@
 ﻿namespace YodeGroup.Runner
 {
-    public class Collectable : GameElement
+    public abstract class Collectable : GameElement
     {
         public override void Disable()
         {
