@@ -32,6 +32,8 @@ namespace YodeGroup.Runner
 
         public override void StartService()
         {
+            _source?.Cancel();
+
             _source = new CancellationTokenSource();
             _token = _source.Token;
 
@@ -58,16 +60,19 @@ namespace YodeGroup.Runner
             if (duration <= 0)
                 throw new ArgumentOutOfRangeException(nameof(duration), "is <= 0");
 
-            GameSpeed *= multiplier;
+            float additionalSpeed = multiplier;
+            GameSpeed += additionalSpeed;
             float startTime = RealTime;
 
             while (RealTime < startTime + duration)
             {
-                _token.ThrowIfCancellationRequested();
+                if (_token.IsCancellationRequested)
+                    return;
+
                 await Task.Yield();
             }
 
-            GameSpeed /= multiplier;
+            GameSpeed -= additionalSpeed;
         }
     }
 }

@@ -1,6 +1,6 @@
 {
   "name": "com.yode.runner",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "displayName": "Runner",
   "description": "This is runner game template package",
   "hideInEditor": true,
