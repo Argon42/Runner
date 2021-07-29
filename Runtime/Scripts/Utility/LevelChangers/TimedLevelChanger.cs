@@ -1,27 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 namespace YodeGroup.Runner
 {
     public class TimedLevelChanger : LevelChanger
     {
+        [SerializeField] private GameTime gameTime;
         [SerializeField] private List<RunnerLevel> levels = new List<RunnerLevel>();
 
         private int _currentLevel;
         private bool _isPaused;
-        private float _time;
+        private float _startTime;
 
         private void Update()
         {
             if (_isPaused)
                 return;
 
-            _time += Time.deltaTime;
-            if (_time > levels[_currentLevel].LevelDuration)
+            if (gameTime.CurrentTime > _startTime + levels[_currentLevel].LevelDuration)
             {
-                _time = 0;
+                _startTime = gameTime.CurrentTime;
                 _currentLevel = (_currentLevel + 1) % levels.Count;
                 ChangeLevel(levels[_currentLevel].Background, levels[_currentLevel].SpawnerData);
             }
@@ -30,26 +29,15 @@ namespace YodeGroup.Runner
         public override void StartService()
         {
             _currentLevel = 0;
-            _time = 0;
+            _startTime = 0;
             _isPaused = false;
 
             ChangeLevel(levels[0].Background, levels[0].SpawnerData);
         }
 
-        public override void StopService()
-        {
-            _isPaused = true;
-        }
-
-        public override void Pause()
-        {
-            _isPaused = true;
-        }
-
-        public override void Resume()
-        {
-            _isPaused = false;
-        }
+        public override void StopService() => _isPaused = true;
+        public override void Pause() => _isPaused = true;
+        public override void Resume() => _isPaused = false;
 
         [Serializable]
         public class RunnerLevel
