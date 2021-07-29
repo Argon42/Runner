@@ -1,13 +1,13 @@
 {
   "name": "com.yode.runner",
-  "version": "2.0.2",
+  "version": "2.1.0",
   "displayName": "Runner",
   "description": "This is runner game template package",
   "hideInEditor": true,
   "samples": [
     {
       "displayName": "HoneyKid sample",
-      "description": "Example based on HoneyKid",
+      "description": "Example based on HoneyKid Runner 2.0.*",
       "path": "Samples~/HoneyKid"
     }
   ],
