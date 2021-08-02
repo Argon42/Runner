@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace YodeGroup.Runner
@@ -14,7 +15,9 @@ namespace YodeGroup.Runner
         public abstract float GetSpeed(float time);
         public abstract float GetSpawnDelay(float time);
         public abstract Obstacle GetObstacle();
+        public abstract Obstacle GetObstacle(Func<Obstacle, bool> predicate);
         public abstract Collectable GetCollectable();
         public abstract GameElement GetGameElement(float time);
+        public abstract Collectable GetCollectable(Func<Collectable, bool> predicate);
     }
 }
