@@ -7,6 +7,7 @@ namespace YodeGroup.Runner
 {
     public class BackgroundScroller : GameService
     {
+        [SerializeField] private GameTime gameTime;
         [SerializeField] private Camera gameCamera;
         [SerializeField] private float scrollingSpeed;
         [SerializeField] private BackgroundTileFactory factory;
@@ -106,7 +107,7 @@ namespace YodeGroup.Runner
                 Transform tileTransform = tile.transform;
                 Vector3 localPosition = tileTransform.localPosition;
 
-                localPosition += Vector3.down * (scrollingSpeed * Time.deltaTime);
+                localPosition += Vector3.down * (scrollingSpeed * gameTime.GameSpeed * Time.deltaTime);
                 tileTransform.localPosition = localPosition;
             }
         }
