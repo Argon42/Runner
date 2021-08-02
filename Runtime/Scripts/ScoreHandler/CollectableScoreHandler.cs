@@ -10,14 +10,14 @@
                 Score += 1;
         }
 
-        public override void StartService()
+        protected override void OnStartService()
         {
             Score = 0;
             _trackingEnable = true;
         }
 
-        public override void StopService() => _trackingEnable = false;
-        public override void Pause() => _trackingEnable = false;
-        public override void Resume() => _trackingEnable = true;
+        protected override void OnStopService() => _trackingEnable = false;
+        protected override void OnPause() => _trackingEnable = false;
+        protected override void OnResume() => _trackingEnable = true;
     }
 }

@@ -10,13 +10,12 @@ namespace YodeGroup.Runner
 
         [SerializeField] private GameTime gameTime;
 
-        private bool _isPaused;
         private AbstractSpawnerData _levelData;
         private float _spawnTime;
 
         private void Update()
         {
-            if (_isPaused || _levelData == false)
+            if (ServiceEnabled == false || _levelData == false)
                 return;
 
             if (gameTime.CurrentTime > _spawnTime)
@@ -26,17 +25,9 @@ namespace YodeGroup.Runner
             }
         }
 
-        public override void StartService()
-        {
-            _spawnTime = 0;
-            _isPaused = false;
-        }
-
-        public override void StopService() => _isPaused = true;
-        public override void Pause() => _isPaused = true;
-        public override void Resume() => _isPaused = false;
-
         public override void SetSpawnerData(AbstractSpawnerData spawnerData) => _levelData = spawnerData;
+
+        protected override void OnStartService() => _spawnTime = 0;
 
         private void SpawnGameElement(float time)
         {

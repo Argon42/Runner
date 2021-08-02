@@ -5,22 +5,22 @@ namespace YodeGroup.Runner
 {
     public class PlayerFacade : GameService
     {
-        public override void StartService()
+        protected override void OnStartService()
         {
             
         }
 
-        public override void StopService()
+        protected override void OnStopService()
         {
             
         }
 
-        public override void Pause()
+        protected override void OnPause()
         {
             
         }
 
-        public override void Resume()
+        protected override void OnResume()
         {
             
         }

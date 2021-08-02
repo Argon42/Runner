@@ -1,7 +1,4 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace YodeGroup.Runner
@@ -24,33 +21,26 @@ namespace YodeGroup.Runner
             spawner.CollectableSpawned -= OnElementSpawned;
         }
 
-        public void DestroyAllElements()
-        {
-            foreach (var element in GetElements())
-                element.Disable();
+        protected override void OnStopService() => DestroyAllElements();
 
-            _gameElements.Clear();
-        }
-
-        public override void StartService()
+        protected override void OnPause()
         {
-        }
-
-        public override void StopService()
-        {
-            DestroyAllElements();
-        }
-
-        public override void Pause()
-        {
-            foreach (var element in GetElements())
+            foreach (GameElement element in GetElements())
                 element.Pause();
         }
 
-        public override void Resume()
+        protected override void OnResume()
         {
-            foreach (var element in GetElements())
+            foreach (GameElement element in GetElements())
                 element.Resume();
+        }
+
+        public void DestroyAllElements()
+        {
+            foreach (GameElement element in GetElements())
+                element.Disable();
+
+            _gameElements.Clear();
         }
 
         public IReadOnlyList<GameElement> GetElements()

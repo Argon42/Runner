@@ -10,12 +10,11 @@ namespace YodeGroup.Runner
         [SerializeField] private List<RunnerLevel> levels = new List<RunnerLevel>();
 
         private int _currentLevel;
-        private bool _isPaused;
         private float _startTime;
 
         private void Update()
         {
-            if (_isPaused)
+            if (ServiceEnabled == false)
                 return;
 
             if (gameTime.CurrentTime > _startTime + levels[_currentLevel].LevelDuration)
@@ -26,18 +25,13 @@ namespace YodeGroup.Runner
             }
         }
 
-        public override void StartService()
+        protected override void OnStartService()
         {
             _currentLevel = 0;
             _startTime = 0;
-            _isPaused = false;
 
             ChangeLevel(levels[0].Background, levels[0].SpawnerData);
         }
-
-        public override void StopService() => _isPaused = true;
-        public override void Pause() => _isPaused = true;
-        public override void Resume() => _isPaused = false;
 
         [Serializable]
         public class RunnerLevel

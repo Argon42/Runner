@@ -18,11 +18,9 @@ namespace YodeGroup.Runner
 
         private float ScreenHeight => gameCamera.orthographicSize * 2;
 
-        public bool IsPaused { get; private set; }
-
         private void Update()
         {
-            if (IsPaused)
+            if (ServiceEnabled == false)
                 return;
             if (_level == false)
                 return;
@@ -33,20 +31,7 @@ namespace YodeGroup.Runner
             AddTilesIfItsNeeded();
         }
 
-        public override void StartService()
-        {
-            IsPaused = false;
-        }
-
-        public override void StopService()
-        {
-            _level = null;
-            IsPaused = true;
-        }
-
-        public override void Pause() => IsPaused = true;
-
-        public override void Resume() => IsPaused = false;
+        protected override void OnStopService() => _level = null;
 
         public void StartLevel(LevelBackground level)
         {
