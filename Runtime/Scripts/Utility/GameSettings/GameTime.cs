@@ -4,7 +4,7 @@ namespace YodeGroup.Runner
 {
     public class GameTime : GameService
     {
-        [SerializeField] public GameSpeed gameSpeed;
+        [SerializeField] private GameSpeed gameSpeed;
 
         private bool _isPaused;
 
