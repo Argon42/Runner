@@ -8,6 +8,12 @@ namespace YodeGroup.Runner
     {
         [SerializeField] private UnityEvent<int> scoreChanged;
 
+        public event UnityAction<int> ScoreChanged
+        {
+            add => scoreChanged.AddListener(value);
+            remove => scoreChanged.RemoveListener(value);
+        }
+
         private int _score;
 
         public int Score
